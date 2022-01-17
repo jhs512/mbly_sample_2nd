@@ -73,5 +73,4 @@ class Migration(migrations.Migration):
             name='market',
             field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='markets.market'),
         ),
-        migrations.RunPython(gen_master),
     ]

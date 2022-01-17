@@ -7,13 +7,13 @@ from django.http import HttpRequest
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
-from products.models import Product, ProductCategory
+from products.models import Product, ProductCategoryItem
 from qna.forms import QuestionForm
 from qna.models import Question
 
 
 def product_list(request: HttpRequest):
-    product_cate = ProductCategory.objects.all()
+    product_cate_items = ProductCategoryItem.objects.all()
 
     search_keyword = request.GET.get('search_keyword', '')
     page = request.GET.get('page', '1')
@@ -28,7 +28,7 @@ def product_list(request: HttpRequest):
 
     return render(request, "products/product_list.html", {
         "products": products,
-        "product_cate" : product_cate
+        "product_cate_items" : product_cate_items
     })
 
 

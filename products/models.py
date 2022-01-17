@@ -6,7 +6,9 @@ from markets.models import Market
 from qna.models import Question
 
 
-class ProductCategory(models.Model):
+class ProductCategoryItem(models.Model):
+    reg_date = models.DateTimeField('등록날짜', auto_now_add=True)
+    update_date = models.DateTimeField('갱신날짜', auto_now=True)
     name = models.CharField('이름', max_length=50)
 
 
@@ -27,7 +29,7 @@ class Product(models.Model):
     is_hidden = models.BooleanField('노출여부', default=False)
     is_sold_out = models.BooleanField('품절여부', default=False)
 
-    category = models.ForeignKey(ProductCategory, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(ProductCategoryItem, on_delete=models.DO_NOTHING)
 
     hit_count = models.PositiveIntegerField('조회수', default=0)
     review_count = models.PositiveIntegerField('리뷰수', default=0)

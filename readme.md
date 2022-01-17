@@ -56,3 +56,14 @@
 
 - .idea 폴더를 git 관리대상에서 제외
   - git rm -r .idea
+
+# 커밋 4
+
+- 올바른 타입힌팅으로 수정
+- : string 에서 : str (으)로
+- : (string) 에서 tuple[str, ...] (으)로
+
+# 커밋 5
+
+- ProductCategory모델명 을 ProductCategoryItem 으로 변경
+- 모델명은 단수로 명명하는게 좋다.

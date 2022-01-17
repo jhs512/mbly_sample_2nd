@@ -16,7 +16,7 @@
             <select class="form-select w-auto">
                 <option value="-1" disabled>카테고리</option>
                 <option value="">전체</option>
-                {% for product_cate_item in product_cate %}
+                {% for product_cate_item in product_cate_items %}
                 <option>
                     <a href="?cate_item_id{{product_cate_item.id}}">{{product_cate_item.name}}</a>
                 </option>

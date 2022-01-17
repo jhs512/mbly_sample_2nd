@@ -1,24 +1,24 @@
 from django.conf import settings
 
-from products.models import ProductCategory, Product, ProductReal
+from products.models import ProductCategoryItem, Product, ProductReal
 
 
 def gen_master_product_category():
-    ProductCategory(name='구두').save()
-    ProductCategory(name='니트').save()
-    ProductCategory(name='롱스커트').save()
-    ProductCategory(name='숏스커트').save()
-    ProductCategory(name='청바지').save()
-    ProductCategory(name='청자켓').save()
-    ProductCategory(name='청치마').save()
-    ProductCategory(name='코트').save()
-    ProductCategory(name='백').save()
-    ProductCategory(name='블라우스').save()
+    ProductCategoryItem(name='구두').save()
+    ProductCategoryItem(name='니트').save()
+    ProductCategoryItem(name='롱스커트').save()
+    ProductCategoryItem(name='숏스커트').save()
+    ProductCategoryItem(name='청바지').save()
+    ProductCategoryItem(name='청자켓').save()
+    ProductCategoryItem(name='청치마').save()
+    ProductCategoryItem(name='코트').save()
+    ProductCategoryItem(name='백').save()
+    ProductCategoryItem(name='블라우스').save()
 
 
 def gen_product(market_id: int, name: str, display_name: str, price: int, opt_1_names: tuple[str, ...], is_hidden: bool,
                 is_sold_out: bool, hit_count: int, review_count: int, review_point: int) -> None:
-    category_id = ProductCategory.objects.filter(name=name).first().id
+    category_id = ProductCategoryItem.objects.filter(name=name).first().id
 
     opt_2_names = ('레드', '와인', '그린', '핑크',)
     opt_2_display_names = ('감성레드', '감성와인', '감성그린', '감성핑크',)
