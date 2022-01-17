@@ -106,7 +106,7 @@ def question_delete(request: HttpRequest, product_id, question_id):
 
     question.delete()
 
-    messages.success(request, "질문이 삭제되었습니다.")
+    messages.success(request, f"{question_id}번 질문이 삭제되었습니다.")
 
     return redirect("products:detail", product_id=product_id)
 
@@ -125,11 +125,12 @@ def question_modify(request: HttpRequest, product_id, question_id):
 
         if question_modify_form.is_valid():
             question_modify_form.save()
-            messages.success(request, "질문이 수정되었습니다.")
+            messages.success(request, f"{question.id}번 질문이 수정되었습니다.")
             return redirect("products:detail", product_id=product_id)
     else:
         question_modify_form = QuestionForm(None, instance=question)
 
     context['question_modify_form'] = question_modify_form
+    context['question'] = question
 
-    return render(request, "products/question_detail.html", context)
+    return render(request, "products/product_detail.html", context)
