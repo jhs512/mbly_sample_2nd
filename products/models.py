@@ -2,6 +2,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
 # Create your models here.
+from accounts.models import User
 from markets.models import Market
 from qna.models import Question
 
@@ -36,6 +37,8 @@ class Product(models.Model):
     review_point = models.PositiveIntegerField('리뷰평점', default=0)
 
     questions = GenericRelation(Question, related_query_name="question")
+
+    product_picked_users = models.ManyToManyField(User, through='products.ProductPickedUser', related_name='picked_products')
 
     # 리팩토링 필요
     def thumb_img_url(self):
@@ -97,3 +100,10 @@ class ProductReal(models.Model):
             rgb_color = 'FFFFFF'
 
         return rgb_color
+
+
+class ProductPickedUser(models.Model):
+    reg_date = models.DateTimeField('등록날짜', auto_now_add=True)
+    update_date = models.DateTimeField('갱신날짜', auto_now=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

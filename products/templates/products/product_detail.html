@@ -40,6 +40,18 @@
                     <span class="t-w-16 t-inline-block">색상</span>
                     {{product.colors|safe}}
                 </li>
+                <li class="list-group-item">
+                    <span class="t-w-16 t-inline-block">좋아요</span>
+                    {% if user_picked %}
+                    <a href="{% url 'products:unpick' product.id %}" class="t-text-[#ff0000]">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'products:pick' product.id %}" class="t-text-[#ff0000]">
+                        <i class="far fa-heart"></i>
+                    </a>
+                    {% endif %}
+                </li>
             </ul>
 
         </div>
@@ -72,7 +84,8 @@
                         </td>
                         <td>
                             {{product_real.option_2_display_name}}
-                            <span class="t-inline-block t-rounded-full t-w-[10px] t-h-[10px]" style="background-color:#{{product_real.rgb_color}}"></span>
+                            <span class="t-inline-block t-rounded-full t-w-[10px] t-h-[10px]"
+                                  style="background-color:#{{product_real.rgb_color}}"></span>
                         </td>
                         <td>
                             {% if not product_real.is_sold_out %}
@@ -127,6 +140,7 @@
                     $(window).on('load', function() {
                         $(window).scrollTop($lastForm.offset().top - $(window).height() + $lastForm.height() + 50);
                     });
+
 
 
 
@@ -217,6 +231,7 @@
                     $(window).on('load', function() {
                         $(window).scrollTop($lastForm.offset().top - $(window).height() + $lastForm.height() + 50);
                     });
+
                 </script>
             </div>
         </div>

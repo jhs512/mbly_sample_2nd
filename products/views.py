@@ -54,23 +54,27 @@ def product_list(request: HttpRequest):
 
 # 공통적으로 사용되는 함수
 # products/product_detail.html 을 위한 기본 데이터
-def _get_product_detail_context(product_id):
+def _get_product_detail_context(request: HttpRequest, product_id):
     product = get_object_or_404(Product, id=product_id)
+
     product_reals = product.product_reals.order_by('option_1_display_name', 'option_2_display_name')
     question_create_form = QuestionForm()
     questions = product.questions.order_by('-id')
+
+    user_picked = product.product_picked_users.filter(id=request.user.id).exists()
 
     return {
         "product": product,
         "product_reals": product_reals,
         "questions": questions,
         "question_create_form": question_create_form,
+        "user_picked": user_picked
     }
 
 
 # 상품 상세
 def product_detail(request: HttpRequest, product_id):
-    context = _get_product_detail_context(product_id)
+    context = _get_product_detail_context(request, product_id)
 
     return render(request, "products/product_detail.html", context)
 
@@ -78,7 +82,7 @@ def product_detail(request: HttpRequest, product_id):
 # 질문 생성화면, 질문생성 처리
 @login_required
 def question_create(request: HttpRequest, product_id):
-    context = _get_product_detail_context(product_id)
+    context = _get_product_detail_context(request, product_id)
     product: Product = context['product']
 
     if request.method == "POST":
@@ -114,7 +118,7 @@ def question_delete(request: HttpRequest, product_id, question_id):
 # 질문 수정
 @login_required
 def question_modify(request: HttpRequest, product_id, question_id):
-    context = _get_product_detail_context(product_id)
+    context = _get_product_detail_context(request, product_id)
     question = get_object_or_404(Question, id=question_id)
 
     if request.user != question.user:
@@ -134,3 +138,17 @@ def question_modify(request: HttpRequest, product_id, question_id):
     context['question'] = question
 
     return render(request, "products/product_detail.html", context)
+
+
+@login_required
+def product_pick(request: HttpRequest, product_id):
+    request.user.picked_products.add(product_id)
+    messages.success(request, f"{product_id}번 상품에 좋아요.")
+    return redirect("products:detail", product_id=product_id)
+
+
+@login_required
+def product_unpick(request: HttpRequest, product_id):
+    request.user.picked_products.remove(product_id)
+    messages.success(request, f"{product_id}번 상품에 좋아요 취소.")
+    return redirect("products:detail", product_id=product_id)
