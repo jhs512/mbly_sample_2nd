@@ -4,8 +4,6 @@ import django.contrib.auth.models
 import django.contrib.auth.validators
 from django.db import migrations, models
 
-from accounts.gen_master_data import gen_master
-
 
 class Migration(migrations.Migration):
 
@@ -44,5 +42,5 @@ class Migration(migrations.Migration):
                 ('objects', django.contrib.auth.models.UserManager()),
             ],
         ),
-        migrations.RunPython(gen_master),
+
     ]

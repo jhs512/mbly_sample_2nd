@@ -1,3 +1,6 @@
+import os
+
+import requests
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.views import (
@@ -83,3 +86,49 @@ def find_username(request: HttpRequest):
     return render(request, 'accounts/find_username.html', {
         'form': form,
     })
+
+
+def kakao_login(request: HttpRequest):
+    REST_API_KEY = os.environ.get("KAKAO_APP__REST_API_KEY")
+    REDIRECT_URI = os.environ.get("KAKAO_APP__LOGIN__REDIRECT_URI")
+    return redirect(
+        f"https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code"
+    )
+
+
+def kakao_login_callback(request):
+    code = request.GET.get("code")
+
+    REST_API_KEY = os.environ.get("KAKAO_APP__REST_API_KEY")
+    REDIRECT_URI = os.environ.get("KAKAO_APP__LOGIN__REDIRECT_URI")
+
+    token_request = requests.get(
+        f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&code={code}"
+    )
+
+    token_json = token_request.json()
+
+    error = token_json.get("error", None)
+    if error is not None:
+        raise Exception("카카오 로그인 에러")
+
+    access_token = token_json.get("access_token")
+
+    profile_request = requests.get(
+        "https://kapi.kakao.com/v2/user/me",
+        headers={"Authorization": f"Bearer {access_token}"},
+    )
+    profile_json = profile_request.json()
+    print(profile_json)
+
+    id = profile_json.get("id")
+    profile: dict = profile_json.get("kakao_account").get("profile")
+
+    nickname = profile.get("nickname", "")
+    thumbnail_image_url = profile.get("thumbnail_image_url", "")
+
+    User.login_with_kakao(request, id, nickname, thumbnail_image_url)
+
+    messages.success(request, "카카오톡 계정으로 로그인되었습니다")
+
+    return redirect("main")
