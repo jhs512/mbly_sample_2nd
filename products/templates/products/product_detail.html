@@ -149,6 +149,8 @@
 
 
 
+
+
                 </script>
                 {% endif %}
 
@@ -165,7 +167,7 @@
                 {% for question in questions %}
                 <li class="list-group-item">
                     <div class="t-flex t-items-center mt-2">
-                        <span class="badge bg-primary">{{question.id}}</span>
+                        <span class="badge bg-primary">No. {{question.id}}</span>
 
                         <div class="t-flex-grow"></div>
 
@@ -174,7 +176,10 @@
                         <span class="badge bg-secondary">{{question.reg_date|date:"y-m-d h:i"}}</span>
                     </div>
                     <div class="t-flex mt-2">
-                        <span>{{question.body}}</span>
+                        <span>
+                            <img src="{{ question.user.profile_img_url }}"
+                                 class="t-rounded t-w-[40px] t-mr-[10px] t-float-left"> {{question.body}}
+                        </span>
                         <div class="t-flex-grow"></div>
                         {% if question.user == request.user %}
                         &nbsp;
@@ -232,6 +237,8 @@
                         $(window).scrollTop($lastForm.offset().top - $(window).height() + $lastForm.height() + 50);
                     });
 
+
+
                 </script>
             </div>
         </div>
@@ -243,7 +250,7 @@
 
             <div class="card-body">
                 <div class="t-flex t-items-center mt-2">
-                    <span class="badge bg-primary">{{question.id}}</span>
+                    <span class="badge bg-primary">No. {{question.id}}</span>
 
                     <div class="t-flex-grow"></div>
 
@@ -252,7 +259,10 @@
                     <span class="badge bg-secondary">{{question.reg_date|date:"y-m-d h:i"}}</span>
                 </div>
                 <div class="t-flex mt-2">
-                    <span>{{question.body}}</span>
+                    <span>
+                        <img src="{{ question.user.profile_img_url }}"
+                             class="t-rounded t-w-[40px] t-mr-[10px] t-float-left"> {{question.body}}
+                    </span>
                     <div class="t-flex-grow"></div>
                     &nbsp;
                     <div class="t-flex t-flex-shrink-0 t-flex-col t-items-start t-gap-2">

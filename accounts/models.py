@@ -10,6 +10,7 @@ from django.core.files import File
 from django.db import models
 from django.db.models import QuerySet
 from django.http import HttpRequest
+from django.shortcuts import resolve_url
 
 
 class User(AbstractUser):
@@ -66,3 +67,8 @@ class User(AbstractUser):
             user: User = qs.first()
 
         login(request, user)
+
+    def profile_img_url(self):
+        if self.profile_img:
+            return self.profile_img.url;
+        return resolve_url('pydenticon_image', data=self.username)

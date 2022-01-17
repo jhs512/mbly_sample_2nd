@@ -55,12 +55,7 @@
                         <a class="nav-link !t-whitespace-nowrap" href="#">
                             <i class="far fa-user"></i>
                             {{user.name}}
-                            {% if user.profile_img %}
-                            <img src="{{ user.profile_img.url }}"
-                                 style="width:24px; height:24px; object-fit:cover; border-radius:50%; display:inline-block;"/>
-                            {% else %}
-                            <img src="{% url 'pydenticon_image' user.username %}" style="width:24px; display:inline-block;border-radius:50%; "/>
-                            {% endif %}
+                            <img class="t-w-[22px] t-h-[22px] t-rounded-full t-object-fit t-inline-block" src="{{ user.profile_img_url }}" />
                         </a>
                     </li>
                     {% else %}

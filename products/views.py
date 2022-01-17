@@ -40,7 +40,8 @@ def product_list(request: HttpRequest):
 
     if request.user.is_authenticated:
         products = products \
-            .prefetch_related(Prefetch('product_picked_users', queryset=User.objects.filter(id=request.user.id), to_attr='picked_user'))
+            .prefetch_related(
+            Prefetch('product_picked_users', queryset=User.objects.filter(id=request.user.id), to_attr='picked_user'))
 
     if search_keyword:
         products = products.filter(display_name__icontains=search_keyword)
@@ -65,7 +66,10 @@ def _get_product_detail_context(request: HttpRequest, product_id):
 
     product_reals = product.product_reals.order_by('option_1_display_name', 'option_2_display_name')
     question_create_form = QuestionForm()
-    questions = product.questions.order_by('-id')
+    questions = product \
+        .questions \
+        .select_related('user') \
+        .order_by('-id')
 
     user_picked = product.product_picked_users.filter(id=request.user.id).exists()
 
