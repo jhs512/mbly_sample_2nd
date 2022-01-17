@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'markets.apps.MarketsConfig',
     'products.apps.ProductsConfig',
     'qna.apps.QnaConfig',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [

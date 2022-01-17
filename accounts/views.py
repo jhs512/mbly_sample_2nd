@@ -119,7 +119,6 @@ def kakao_login_callback(request):
         headers={"Authorization": f"Bearer {access_token}"},
     )
     profile_json = profile_request.json()
-    print(profile_json)
 
     id = profile_json.get("id")
     profile: dict = profile_json.get("kakao_account").get("profile")

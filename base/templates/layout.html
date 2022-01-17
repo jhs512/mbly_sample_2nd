@@ -55,7 +55,14 @@
                         <a class="nav-link !t-whitespace-nowrap" href="#">
                             <i class="far fa-user"></i>
                             {{user.name}}
-                            <img class="t-w-[22px] t-h-[22px] t-rounded-full t-object-fit t-inline-block" src="{{ user.profile_img_url }}" />
+                            <img class="t-w-[22px] t-h-[22px] t-rounded-full t-object-fit t-inline-block"
+                                 src="{{ user.profile_img_url }}"/>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cart:list' %}">
+                            <i class="fas fa-shopping-cart"></i>
+                            장바구니
                         </a>
                     </li>
                     {% else %}

@@ -9,6 +9,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 from accounts.models import User
+from cart.forms import ProductCartAddForm
 from products.models import Product, ProductCategoryItem
 from qna.forms import QuestionForm
 from qna.models import Question
@@ -64,6 +65,8 @@ def product_list(request: HttpRequest):
 def _get_product_detail_context(request: HttpRequest, product_id):
     product = get_object_or_404(Product, id=product_id)
 
+    cart_add_form = ProductCartAddForm(product_id=product_id)
+
     product_reals = product.product_reals.order_by('option_1_display_name', 'option_2_display_name')
     question_create_form = QuestionForm()
     questions = product \
@@ -78,7 +81,8 @@ def _get_product_detail_context(request: HttpRequest, product_id):
         "product_reals": product_reals,
         "questions": questions,
         "question_create_form": question_create_form,
-        "user_picked": user_picked
+        "user_picked": user_picked,
+        "cart_add_form": cart_add_form,
     }
 
 
