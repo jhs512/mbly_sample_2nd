@@ -17,6 +17,10 @@ def product_list(request: HttpRequest):
 
     search_keyword = request.GET.get('search_keyword', '')
     product_cate_item_id = request.GET.get('product_cate_item_id', '')
+
+    product_cate_item_name, = (product_cate_item.name for product_cate_item in product_cate_items if
+                               product_cate_item.id == int(product_cate_item_id)) if product_cate_item_id else tuple(
+        [''])
     page = request.GET.get('page', '1')
 
     products = Product \
@@ -36,6 +40,7 @@ def product_list(request: HttpRequest):
 
     return render(request, "products/product_list.html", {
         "products": products,
+        "product_cate_item_name": product_cate_item_name,
         "product_cate_items": product_cate_items
     })
 

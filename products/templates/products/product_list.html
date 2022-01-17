@@ -6,11 +6,17 @@
 <section class="section-prod-list">
     <div class="container">
         <div class="t-flex t-items-center">
-            <h1 class="t-font-bold"><i class="fas fa-tshirt"></i> 최신 상품리스트</h1>
+            <h1 class="t-font-bold">
+                <i class="fas fa-tshirt"></i>
+
+                <span class="t-hidden sm:t-inline">상품리스트</span>
+                <span class="sm:t-hidden">상품</span>
+            </h1>
 
             <div class="t-flex-grow"></div>
 
-            <select class="form-select w-auto" onchange="location.href = '?search_keyword={{request.GET.search_keyword}}&product_cate_item_id=' + this.value;">
+            <select class="form-select w-auto"
+                    onchange="location.href = '?search_keyword={{request.GET.search_keyword}}&product_cate_item_id=' + this.value;">
                 <option value="-1" disabled>카테고리</option>
                 <option value="">전체</option>
                 {% for product_cate_item in product_cate_items %}
@@ -22,8 +28,29 @@
 
             <script>
                 $('select').last().val('{{request.GET.product_cate_item_id}}');
+
+
+
             </script>
         </div>
+
+        {% if request.GET.search_keyword or request.GET.product_cate_item_id %}
+        <hr>
+
+        <div>
+
+            {% if request.GET.search_keyword %}
+            <a href="?product_cate_item_id={{request.GET.product_cate_item_id}}" class="badge bg-primary">검색어
+                `{{request.GET.search_keyword}}` <i class="fas fa-times"></i></a>
+            {% endif %}
+
+            {% if request.GET.product_cate_item_id %}
+            <a href="?search_keyword={{request.GET.search_keyword}}" class="badge bg-primary">카테고리
+                `{{product_cate_item_name}}` <i class="fas fa-times"></i></a>
+            {% endif %}
+        </div>
+
+        {% endif %}
 
         <hr>
 
