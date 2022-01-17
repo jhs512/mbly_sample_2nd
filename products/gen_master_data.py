@@ -1,5 +1,3 @@
-import string
-
 from django.conf import settings
 
 from products.models import ProductCategory, Product, ProductReal
@@ -18,8 +16,8 @@ def gen_master_product_category():
     ProductCategory(name='블라우스').save()
 
 
-def gen_product(market_id: int, name: string, display_name: string, price: int, opt_1_names: (string), is_hidden: bool,
-                is_sold_out: bool, hit_count: int, review_count: int, review_point: int):
+def gen_product(market_id: int, name: str, display_name: str, price: int, opt_1_names: tuple[str, ...], is_hidden: bool,
+                is_sold_out: bool, hit_count: int, review_count: int, review_point: int) -> None:
     category_id = ProductCategory.objects.filter(name=name).first().id
 
     opt_2_names = ('레드', '와인', '그린', '핑크',)

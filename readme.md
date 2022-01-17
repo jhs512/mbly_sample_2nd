@@ -17,13 +17,6 @@
 # 팁 3
 
 - git에서 관리를 시작한 파일이나 폴더를 제거하려면 git rm 명령어를 사용하면 좋습니다.
-    - git mv 원래파일경로 새래파일경로
-        - EX : git mv db.sql database_util.sql
-    - 이렇게 하지 않고 그냥 파일명을 변경하면 git에서는 해당 파일이 삭제되고 새로운 파일이 생겼다고 판단합니다.
-
-# 팁 3
-
-- 혹시나 git에서 관리를 시작한 파일의 이름이나 위치를 변경할 때는 git mv 명령어를 쓰면 좋습니다.
     - git rm -r 폴더경로
         - 폴더삭제
         - 실제로 폴더가 삭제되진 않는다. git 에서만 제거됨
@@ -33,6 +26,17 @@
         - 파일삭제
     - git rm --cached -r 파일경로
         - git add 만 진행되었고, 아직 커밋되지 않은 건은 --cached 를 붙여주세요.
+
+# 팁 4
+
+- 가끔 파이참에서 Proejct View에 폴더가 표시가 안될 때가 있는데,
+- 그 때는, rm -rf .idea 명령으로 해당 폴더를 삭제하고, 파이참을 완전히 껏다가 다시켜서 프로젝트를 다시 열면 됩니다.
+- 물론 anaconda 세팅은 다시 수동으로 해줘야 할 수 있습니다.
+
+# 팁 5
+
+- python manage.py runserver 라고 하지 않아도 됩니다. ./manage.py runserver
+  - ./manage.py migrate && ./manage.py runserver
 
 ---
 
@@ -47,7 +51,8 @@
 - db.sql파일을 database_util.sql으로 이름 변경
     - 해당 파일은 유용한 SQL을 모아두는 용도이기 때문에, 해당 이름이 더 적절하다고 판단.
 
+
 # 커밋 3
 
 - .idea 폴더를 git 관리대상에서 제외
-  - git rm -r .idea 
+  - git rm -r .idea
