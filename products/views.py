@@ -12,15 +12,22 @@ from qna.forms import QuestionForm
 from qna.models import Question
 
 
+# 상품 리스트
 def product_list(request: HttpRequest):
+    # 카테고리 정보
     product_cate_items = ProductCategoryItem.objects.all()
 
+    # 필터요소 1, 검색어가 있다면 저장
     search_keyword = request.GET.get('search_keyword', '')
+    # 필터요소 2, 카테고리 아이템이 있다면 저장
     product_cate_item_id = request.GET.get('product_cate_item_id', '')
 
+    # 선택된 카테고리 아이템의 이름을 저장, 없으면 빈값
     product_cate_item_name, = (product_cate_item.name for product_cate_item in product_cate_items if
                                product_cate_item.id == int(product_cate_item_id)) if product_cate_item_id else tuple(
         [''])
+
+    # 페이징
     page = request.GET.get('page', '1')
 
     products = Product \
@@ -45,13 +52,39 @@ def product_list(request: HttpRequest):
     })
 
 
-def _product_detail(request: HttpRequest, product_id):
+# 공통적으로 사용되는 함수
+# products/product_detail.html 을 위한 기본 데이터
+def _get_product_detail_context(product_id):
     product = get_object_or_404(Product, id=product_id)
+    product_reals = product.product_reals.order_by('option_1_display_name', 'option_2_display_name')
+    question_create_form = QuestionForm()
+    questions = product.questions.order_by('-id')
 
-    if request.method == "POST" and request.user.is_authenticated:
-        form = QuestionForm(request.POST)
-        if form.is_valid():
-            question = form.save(commit=False)
+    return {
+        "product": product,
+        "product_reals": product_reals,
+        "questions": questions,
+        "question_create_form": question_create_form,
+    }
+
+
+# 상품 상세
+def product_detail(request: HttpRequest, product_id):
+    context = _get_product_detail_context(product_id)
+
+    return render(request, "products/product_detail.html", context)
+
+
+# 질문 생성화면, 질문생성 처리
+@login_required
+def question_create(request: HttpRequest, product_id):
+    context = _get_product_detail_context(product_id)
+    product: Product = context['product']
+
+    if request.method == "POST":
+        context['question_create_form'] = QuestionForm(request.POST)
+        if context['question_create_form'].is_valid():
+            question = context['question_create_form'].save(commit=False)
             question.content_type = ContentType.objects.get_for_model(product)
             question.object_id = product.id
             question.user = request.user
@@ -59,30 +92,11 @@ def _product_detail(request: HttpRequest, product_id):
             messages.success(request, "질문이 등록되었습니다.")
 
             return redirect("products:detail", product_id=product.id)
-    else:
-        form = QuestionForm()
 
-        form.errors
-
-    product_reals = product.product_reals.order_by('option_1_display_name', 'option_2_display_name')
-    questions = product.questions.order_by('-id')
-
-    return render(request, "products/product_detail.html", {
-        "product": product,
-        "product_reals": product_reals,
-        "questions": questions,
-        "question_form": form,
-    })
+    return render(request, "products/product_detail.html", context)
 
 
-def product_detail(request: HttpRequest, product_id):
-    return _product_detail(request, product_id)
-
-
-def question_create(request: HttpRequest, product_id):
-    return _product_detail(request, product_id)
-
-
+# 질문 삭제
 @login_required
 def question_delete(request: HttpRequest, product_id, question_id):
     question = get_object_or_404(Question, id=question_id)
@@ -97,22 +111,25 @@ def question_delete(request: HttpRequest, product_id, question_id):
     return redirect("products:detail", product_id=product_id)
 
 
+# 질문 수정
+@login_required
 def question_modify(request: HttpRequest, product_id, question_id):
-    product = get_object_or_404(Product, id=product_id)
+    context = _get_product_detail_context(product_id)
     question = get_object_or_404(Question, id=question_id)
 
-    if request.method == "POST":
-        form = QuestionForm(request.POST, instance=question)
+    if request.user != question.user:
+        raise exceptions.PermissionDenied()
 
-        if form.is_valid():
-            form.save()
+    if request.method == "POST":
+        question_modify_form = QuestionForm(request.POST, instance=question)
+
+        if question_modify_form.is_valid():
+            question_modify_form.save()
             messages.success(request, "질문이 수정되었습니다.")
             return redirect("products:detail", product_id=product_id)
     else:
-        form = QuestionForm(None, instance=question)
+        question_modify_form = QuestionForm(None, instance=question)
 
-    return render(request, "products/question_modify.html", {
-        "product": product,
-        "question": question,
-        "question_form": form,
-    })
+    context['question_modify_form'] = question_modify_form
+
+    return render(request, "products/question_detail.html", context)
