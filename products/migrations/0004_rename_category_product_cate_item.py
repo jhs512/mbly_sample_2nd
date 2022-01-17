@@ -2,9 +2,10 @@
 
 from django.db import migrations
 
+from products.gen_master_data import gen_master
+
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('products', '0003_productcategoryitem_reg_date_and_more'),
     ]
@@ -15,4 +16,5 @@ class Migration(migrations.Migration):
             old_name='category',
             new_name='cate_item',
         ),
+        migrations.RunPython(gen_master),
     ]

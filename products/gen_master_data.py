@@ -18,13 +18,13 @@ def gen_master_product_category():
 
 def gen_product(market_id: int, name: str, display_name: str, price: int, opt_1_names: tuple[str, ...], is_hidden: bool,
                 is_sold_out: bool, hit_count: int, review_count: int, review_point: int) -> None:
-    category_id = ProductCategoryItem.objects.filter(name=name).first().id
+    cate_item_id = ProductCategoryItem.objects.filter(name=name).first().id
 
     opt_2_names = ('레드', '와인', '그린', '핑크',)
     opt_2_display_names = ('감성레드', '감성와인', '감성그린', '감성핑크',)
 
     product = Product(market_id=market_id, name=name, display_name=display_name, price=price, sale_price=price - 1000,
-                      category_id=category_id, is_hidden=is_hidden, is_sold_out=is_sold_out, hit_count=hit_count,
+                      cate_item_id=cate_item_id, is_hidden=is_hidden, is_sold_out=is_sold_out, hit_count=hit_count,
                       review_count=review_count, review_point=review_point)
     product.save()
 

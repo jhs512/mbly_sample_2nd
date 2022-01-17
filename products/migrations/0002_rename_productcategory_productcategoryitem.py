@@ -2,8 +2,6 @@
 
 from django.db import migrations
 
-from products.gen_master_data import gen_master
-
 
 class Migration(migrations.Migration):
 
@@ -16,5 +14,4 @@ class Migration(migrations.Migration):
             old_name='ProductCategory',
             new_name='ProductCategoryItem',
         ),
-        migrations.RunPython(gen_master),
     ]

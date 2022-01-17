@@ -16,6 +16,7 @@ def product_list(request: HttpRequest):
     product_cate_items = ProductCategoryItem.objects.all()
 
     search_keyword = request.GET.get('search_keyword', '')
+    product_cate_item_id = request.GET.get('product_cate_item_id', '')
     page = request.GET.get('page', '1')
 
     products = Product \
@@ -26,6 +27,9 @@ def product_list(request: HttpRequest):
 
     if search_keyword:
         products = products.filter(display_name__icontains=search_keyword)
+
+    if product_cate_item_id:
+        products = products.filter(cate_item_id=product_cate_item_id)
 
     paginator = Paginator(products, 8)  # 페이지당 10개씩 보여주기
     products = paginator.get_page(page)
