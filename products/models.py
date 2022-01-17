@@ -37,6 +37,7 @@ class Product(models.Model):
 
     questions = GenericRelation(Question, related_query_name="question")
 
+    # 리팩토링 필요
     def thumb_img_url(self):
         img_name = self.cate_item.name
 
@@ -53,17 +54,8 @@ class Product(models.Model):
         html = ''
 
         for color in set(colors):
-            if color == '레드':
-                rgb_color = 'red'
-            elif color == '그린':
-                rgb_color = 'green'
-            elif color == '블루':
-                rgb_color = 'blue'
-            elif color == '핑크':
-                rgb_color = 'pink'
-            elif color == '와인':
-                rgb_color = '#722F37'
-            html += f"""<span style="width:10px; height:10px; display:inline-block; border-radius:50%; margin:0 3px; background-color:{rgb_color};"></span>"""
+            rgb_color = ProductReal.rgb_color_from_color_name(color)
+            html += f"""<span style="width:10px; height:10px; display:inline-block; border-radius:50%; margin:0 3px; background-color:#{rgb_color};"></span>"""
 
         return html
 
@@ -85,3 +77,23 @@ class ProductReal(models.Model):
     is_hidden = models.BooleanField('노출여부', default=False)
     add_price = models.IntegerField('추가가격', default=0)
     stock_quantity = models.PositiveIntegerField('재고개수', default=0)  # 품절일때 유용함
+
+    def rgb_color(self):
+        return ProductReal.rgb_color_from_color_name(self.option_2_name)
+
+    @classmethod
+    def rgb_color_from_color_name(cls, color):
+        if color == '레드':
+            rgb_color = 'FF0000'
+        elif color == '그린':
+            rgb_color = '008000'
+        elif color == '블루':
+            rgb_color = '0000FF'
+        elif color == '핑크':
+            rgb_color = 'ffc0cb'
+        elif color == '와인':
+            rgb_color = '722F37'
+        else:
+            rgb_color = 'FFFFFF'
+
+        return rgb_color

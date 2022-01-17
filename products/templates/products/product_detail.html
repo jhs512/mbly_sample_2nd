@@ -61,6 +61,7 @@
                         <th>사이즈</th>
                         <th>색상</th>
                         <th>품절</th>
+                        <th>담기</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -71,6 +72,7 @@
                         </td>
                         <td>
                             {{product_real.option_2_display_name}}
+                            <span class="t-inline-block t-rounded-full t-w-[10px] t-h-[10px]" style="background-color:#{{product_real.rgb_color}}"></span>
                         </td>
                         <td>
                             {% if not product_real.is_sold_out %}
@@ -78,6 +80,11 @@
                             {% else %}
                             <span class="badge bg-secondary">품절</span>
                             {% endif %}
+                        </td>
+                        <td>
+                            <a href="#" class="t-no-underline">
+                                <i class="fas fa-cart-plus"></i>
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}
