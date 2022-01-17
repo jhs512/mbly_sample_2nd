@@ -3,10 +3,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.core import exceptions
 from django.core.paginator import Paginator
+from django.db.models import Prefetch
 from django.http import HttpRequest
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
+from accounts.models import User
 from products.models import Product, ProductCategoryItem
 from qna.forms import QuestionForm
 from qna.models import Question
@@ -35,6 +37,10 @@ def product_list(request: HttpRequest):
         .prefetch_related('cate_item') \
         .prefetch_related('product_reals') \
         .order_by('-id')
+
+    if request.user.is_authenticated:
+        products = products \
+            .prefetch_related(Prefetch('product_picked_users', queryset=User.objects.filter(id=request.user.id), to_attr='picked_user'))
 
     if search_keyword:
         products = products.filter(display_name__icontains=search_keyword)
