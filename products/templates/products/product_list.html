@@ -2,9 +2,6 @@
 {% load humanize %}
 
 {%block content %}
-{% with img_box_class="t-relative t-overflow-hidden t-rounded" %}
-{% with img_box_before_class="before:t-content-[''] before:t-absolute before:t-inset-0 before:t-bg-[#00000000] group-hover:before:t-bg-[#00000055] before:t-transition-all" %}
-{% with img_box_after_class="after:t-content-[attr(data-before)] after:t-hidden group-hover:after:t-block after:t-no-underline after:t-text-white after:t-border-2 after:t-border-white after:t-border-solid after:t-rounded after:t-p-2 after:t-whitespace-nowrap after:t-absolute after:t-top-[50%] after:t-left-[50%] after:t-translate-y-[-50%] after:t-translate-x-[-50%] after:t-transition-all" %}
 
 <section class="section-prod-list">
     <div class="container">
@@ -30,10 +27,14 @@
             {% for product in products %}
 
             <li class="t-flex t-flex-col t-group">
-                <a data-before="VIEW MORE" href="{% url 'products:detail' product.id %}"
-                   class="{{img_box_class}} {{img_box_before_class}} {{img_box_after_class}}">
-                    <img class="t-block t-w-full t-transition-all group-hover:t-scale-110 t-relative t--z-50 t-object-cover"
+                <a href="{% url 'products:detail' product.id %}"
+                   class="t-relative t-overflow-hidden t-rounded">
+                    <img class="t-block t-w-full t-transition-all group-hover:t-scale-110 t-object-cover"
                          src="{{product.thumb_img_url}}" alt="" style="aspect-ratio: 1 / 1;">
+                    <div class="t-absolute t-inset-0 t-bg-[#00000000] group-hover:t-bg-[#00000055] t-transition-all"></div>
+                    <div class="t-absolute t-inset-0 t-opacity-0 group-hover:t-opacity-100 t-flex t-items-center t-justify-center t-transition-all">
+                        <span class="t-text-white t-border-2 t-border-white t-border-solid t-p-2 t-rounded t-whitespace-nowrap">VIEW MORE</span>
+                    </div>
                 </a>
                 <a class="t-text-center t-mt-2 t-no-underline t-text-black t-italic group-hover:t-underline"
                    href="{% url 'products:detail' product.id %}">
@@ -95,8 +96,5 @@
         </ul>
     </div>
 </section>
-{% endwith %}
-{% endwith %}
-{% endwith %}
 
 {%endblock%}

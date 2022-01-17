@@ -468,12 +468,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
+.t-absolute {
+  position: absolute;
+}
+
 .t-relative {
   position: relative;
 }
 
-.t--z-50 {
-  z-index: -50;
+.t-inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 }
 
 .t-my-\[0px\] {
@@ -581,21 +588,42 @@ Ensure the default browser behavior of the `hidden` attribute.
   overflow: hidden;
 }
 
-.t-whitespace-nowrap {
-  white-space: nowrap;
-}
-
 .\!t-whitespace-nowrap {
   white-space: nowrap !important;
+}
+
+.t-whitespace-nowrap {
+  white-space: nowrap;
 }
 
 .t-rounded {
   border-radius: 0.25rem;
 }
 
+.t-border-2 {
+  border-width: 2px;
+}
+
+.t-border-solid {
+  border-style: solid;
+}
+
+.t-border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.t-bg-\[\#00000000\] {
+  background-color: #00000000;
+}
+
 .t-object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.t-p-2 {
+  padding: 0.5rem;
 }
 
 .t-py-\[20px\] {
@@ -628,6 +656,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
+.t-text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .t-text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -638,133 +671,24 @@ Ensure the default browser behavior of the `hidden` attribute.
           text-decoration-line: none;
 }
 
+.t-opacity-0 {
+  opacity: 0;
+}
+
 .t-transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
 
-.before\:t-absolute::before {
-  content: var(--tw-content);
-  position: absolute;
-}
-
-.before\:t-inset-0::before {
-  content: var(--tw-content);
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-}
-
-.before\:t-bg-\[\#00000000\]::before {
-  content: var(--tw-content);
-  background-color: #00000000;
-}
-
-.before\:t-transition-all::before {
-  content: var(--tw-content);
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.before\:t-content-\[\'\'\]::before {
-  --tw-content: '';
-  content: var(--tw-content);
-}
-
-.after\:t-absolute::after {
-  content: var(--tw-content);
-  position: absolute;
-}
-
-.after\:t-top-\[50\%\]::after {
-  content: var(--tw-content);
-  top: 50%;
-}
-
-.after\:t-left-\[50\%\]::after {
-  content: var(--tw-content);
-  left: 50%;
-}
-
-.after\:t-hidden::after {
-  content: var(--tw-content);
-  display: none;
-}
-
-.after\:t-translate-y-\[-50\%\]::after {
-  content: var(--tw-content);
-  --tw-translate-y: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.after\:t-translate-x-\[-50\%\]::after {
-  content: var(--tw-content);
-  --tw-translate-x: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.after\:t-whitespace-nowrap::after {
-  content: var(--tw-content);
-  white-space: nowrap;
-}
-
-.after\:t-rounded::after {
-  content: var(--tw-content);
-  border-radius: 0.25rem;
-}
-
-.after\:t-border-2::after {
-  content: var(--tw-content);
-  border-width: 2px;
-}
-
-.after\:t-border-solid::after {
-  content: var(--tw-content);
-  border-style: solid;
-}
-
-.after\:t-border-white::after {
-  content: var(--tw-content);
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
-.after\:t-p-2::after {
-  content: var(--tw-content);
-  padding: 0.5rem;
-}
-
-.after\:t-text-white::after {
-  content: var(--tw-content);
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.after\:t-no-underline::after {
-  content: var(--tw-content);
-  -webkit-text-decoration-line: none;
-          text-decoration-line: none;
-}
-
-.after\:t-transition-all::after {
-  content: var(--tw-content);
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.after\:t-content-\[attr\(data-before\)\]::after {
-  --tw-content: attr(data-before);
-  content: var(--tw-content);
-}
-
 .t-group:hover .group-hover\:t-scale-110 {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.t-group:hover .group-hover\:t-bg-\[\#00000055\] {
+  background-color: #00000055;
 }
 
 .t-group:hover .group-hover\:t-text-blue-500 {
@@ -777,14 +701,8 @@ Ensure the default browser behavior of the `hidden` attribute.
           text-decoration-line: underline;
 }
 
-.t-group:hover .group-hover\:before\:t-bg-\[\#00000055\]::before {
-  content: var(--tw-content);
-  background-color: #00000055;
-}
-
-.t-group:hover .group-hover\:after\:t-block::after {
-  content: var(--tw-content);
-  display: block;
+.t-group:hover .group-hover\:t-opacity-100 {
+  opacity: 1;
 }
 
 @media (min-width: 640px) {

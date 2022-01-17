@@ -36,7 +36,7 @@
 # 팁 5
 
 - python manage.py runserver 라고 하지 않아도 됩니다. ./manage.py runserver
-  - ./manage.py migrate && ./manage.py runserver
+    - ./manage.py migrate && ./manage.py runserver
 
 ---
 
@@ -51,11 +51,10 @@
 - db.sql파일을 database_util.sql으로 이름 변경
     - 해당 파일은 유용한 SQL을 모아두는 용도이기 때문에, 해당 이름이 더 적절하다고 판단.
 
-
 # 커밋 3
 
 - .idea 폴더를 git 관리대상에서 제외
-  - git rm -r .idea
+    - git rm -r .idea
 
 # 커밋 4
 
@@ -71,3 +70,7 @@
 # 커밋 6
 
 - 상품 리스팅시에 N + 1 문제 해결
+
+# 커밋 7
+
+- 상품리스트아이템의 호버 효과관련 코드를 리팩토링
