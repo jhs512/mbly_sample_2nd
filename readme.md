@@ -67,3 +67,7 @@
 
 - ProductCategory모델명 을 ProductCategoryItem 으로 변경
 - 모델명은 단수로 명명하는게 좋다.
+
+# 커밋 6
+
+- 상품 리스팅시에 N + 1 문제 해결

@@ -18,17 +18,21 @@ def product_list(request: HttpRequest):
     search_keyword = request.GET.get('search_keyword', '')
     page = request.GET.get('page', '1')
 
-    if not search_keyword:
-        products = Product.objects.order_by('-id')
-    else:
-        products = Product.objects.filter(display_name__icontains=search_keyword).order_by('-id')
+    products = Product \
+        .objects \
+        .prefetch_related('cate_item') \
+        .prefetch_related('product_reals') \
+        .order_by('-id')
+
+    if search_keyword:
+        products = products.filter(display_name__icontains=search_keyword)
 
     paginator = Paginator(products, 8)  # 페이지당 10개씩 보여주기
     products = paginator.get_page(page)
 
     return render(request, "products/product_list.html", {
         "products": products,
-        "product_cate_items" : product_cate_items
+        "product_cate_items": product_cate_items
     })
 
 

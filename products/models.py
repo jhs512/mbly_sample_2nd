@@ -29,7 +29,7 @@ class Product(models.Model):
     is_hidden = models.BooleanField('노출여부', default=False)
     is_sold_out = models.BooleanField('품절여부', default=False)
 
-    category = models.ForeignKey(ProductCategoryItem, on_delete=models.DO_NOTHING)
+    cate_item = models.ForeignKey(ProductCategoryItem, on_delete=models.DO_NOTHING)
 
     hit_count = models.PositiveIntegerField('조회수', default=0)
     review_count = models.PositiveIntegerField('리뷰수', default=0)
@@ -38,7 +38,7 @@ class Product(models.Model):
     questions = GenericRelation(Question, related_query_name="question")
 
     def thumb_img_url(self):
-        img_name = self.category.name
+        img_name = self.cate_item.name
 
         img_name += '2' if self.id % 2 == 0 else ''
 
