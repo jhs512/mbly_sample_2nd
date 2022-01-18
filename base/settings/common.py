@@ -156,4 +156,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # 실제 운영서버 도메인
 # 장고 최신버전부터 이걸 안하면 안됨
-CSRF_TRUSTED_ORIGINS = ['https://sample1.public.473.be']
+CSRF_TRUSTED_ORIGINS = ['https://sample1.public.473.be', 'https://site7.public.473.be']
