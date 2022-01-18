@@ -44,6 +44,7 @@
                     </li>
                     <li class="list-group-item">
                         <span class="t-w-16 t-inline-block common-label">좋아요</span>
+                        {% if user.is_authenticated %}
                         {% if user_picked %}
                         <form method="post" class="one-text-button-form"
                               action="{% url 'products:unpick' product.id %}">
@@ -59,6 +60,11 @@
                                 <i class="far fa-heart"></i>
                             </button>
                         </form>
+                        {% endif %}
+                        {% else %}
+                        <a class="t-text-[#ff0000]" href="{% url 'accounts:login' %}?next={{request.get_full_path}}">
+                            <i class="far fa-heart"></i>
+                        </a>
                         {% endif %}
                     </li>
                 </ul>
