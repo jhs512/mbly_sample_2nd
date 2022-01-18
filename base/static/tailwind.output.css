@@ -483,10 +483,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
-.t-col-span-2 {
-  grid-column: span 2 / span 2;
-}
-
 .t-float-left {
   float: left;
 }
@@ -500,12 +496,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 10px;
 }
 
+.t-ml-\[17px\] {
+  margin-left: 17px;
+}
+
 .t-ml-2 {
   margin-left: 0.5rem;
 }
 
-.t-mt-2 {
-  margin-top: 0.5rem;
+.t-mt-\[8px\] {
+  margin-top: 8px;
+}
+
+.t-mt-\[5px\] {
+  margin-top: 5px;
 }
 
 .t-mt-\[30px\] {
@@ -524,48 +528,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.75rem;
 }
 
+.t-mt-2 {
+  margin-top: 0.5rem;
+}
+
 .t-mt-12 {
   margin-top: 3rem;
-}
-
-.t-mt-1 {
-  margin-top: 0.25rem;
-}
-
-.t-mt-\[5px\] {
-  margin-top: 5px;
-}
-
-.t-ml-1 {
-  margin-left: 0.25rem;
-}
-
-.t-mt-\[15px\] {
-  margin-top: 15px;
-}
-
-.t-mt-\[8px\] {
-  margin-top: 8px;
-}
-
-.t-ml-3 {
-  margin-left: 0.75rem;
-}
-
-.t-ml-4 {
-  margin-left: 1rem;
-}
-
-.t-ml-\[30px\] {
-  margin-left: 30px;
-}
-
-.t-ml-\[20px\] {
-  margin-left: 20px;
-}
-
-.t-ml-\[17px\] {
-  margin-left: 17px;
 }
 
 .t-block {
@@ -592,24 +560,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 22px;
 }
 
-.t-h-\[80px\] {
-  height: 80px;
+.t-h-\[200px\] {
+  height: 200px;
 }
 
 .t-h-\[10px\] {
   height: 10px;
-}
-
-.t-h-\[180px\] {
-  height: 180px;
-}
-
-.t-h-\[150px\] {
-  height: 150px;
-}
-
-.t-h-\[200px\] {
-  height: 200px;
 }
 
 .t-min-h-screen {
@@ -624,60 +580,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
-.t-w-\[80px\] {
-  width: 80px;
-}
-
-.t-w-\[100px\] {
-  width: 100px;
-}
-
-.t-w-16 {
-  width: 4rem;
+.t-w-\[250px\] {
+  width: 250px;
 }
 
 .t-w-\[10px\] {
   width: 10px;
 }
 
-.t-w-\[40px\] {
-  width: 40px;
-}
-
-.t-w-\[50px\] {
-  width: 50px;
-}
-
-.\!t-w-\[50px\] {
-  width: 50px !important;
-}
-
-.\!t-w-\[60px\] {
-  width: 60px !important;
-}
-
-.\!t-w-\[160px\] {
-  width: 160px !important;
-}
-
 .\!t-w-\[100px\] {
   width: 100px !important;
 }
 
-.t-w-\[150px\] {
-  width: 150px;
+.t-w-16 {
+  width: 4rem;
 }
 
-.t-w-\[300px\] {
-  width: 300px;
-}
-
-.t-w-\[200px\] {
-  width: 200px;
-}
-
-.t-w-\[250px\] {
-  width: 250px;
+.t-w-\[40px\] {
+  width: 40px;
 }
 
 .t-max-w-screen-md {
@@ -704,62 +624,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-.t-grid-cols-\[3fr_4fr\] {
-  grid-template-columns: 3fr 4fr;
-}
-
-.t-grid-cols-\[4fr_4fr_2fr\] {
-  grid-template-columns: 4fr 4fr 2fr;
-}
-
-.t-grid-cols-\[100px_4fr_2fr\] {
-  grid-template-columns: 100px 4fr 2fr;
-}
-
-.t-grid-cols-\[150px_4fr_2fr\] {
-  grid-template-columns: 150px 4fr 2fr;
-}
-
-.t-grid-cols-\[180px_4fr_2fr\] {
-  grid-template-columns: 180px 4fr 2fr;
-}
-
-.t-grid-cols-\[160px_4fr_2fr\] {
-  grid-template-columns: 160px 4fr 2fr;
-}
-
-.t-grid-cols-\[190px_4fr_2fr\] {
-  grid-template-columns: 190px 4fr 2fr;
-}
-
-.t-grid-cols-\[185px_4fr_2fr\] {
-  grid-template-columns: 185px 4fr 2fr;
-}
-
-.t-grid-cols-\[185px_4fr_300px\] {
-  grid-template-columns: 185px 4fr 300px;
-}
-
-.t-grid-cols-\[185px_4fr_auto\] {
-  grid-template-columns: 185px 4fr auto;
-}
-
-.\!t-grid-cols-1 {
-  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-}
-
-.t-grid-cols-\[1fr\] {
-  grid-template-columns: 1fr;
-}
-
-.t-flex-row {
-  flex-direction: row;
-}
-
-.\!t-flex-row {
-  flex-direction: row !important;
-}
-
 .t-flex-col {
   flex-direction: column;
 }
@@ -780,24 +644,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   justify-content: center;
 }
 
-.t-gap-10 {
-  gap: 2.5rem;
+.t-gap-3 {
+  gap: 0.75rem;
 }
 
 .t-gap-2 {
   gap: 0.5rem;
 }
 
+.t-gap-10 {
+  gap: 2.5rem;
+}
+
 .t-gap-\[20px\] {
   gap: 20px;
-}
-
-.t-gap-\[10px\] {
-  gap: 10px;
-}
-
-.t-gap-3 {
-  gap: 0.75rem;
 }
 
 .t-overflow-hidden {
@@ -812,10 +672,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   white-space: nowrap;
 }
 
-.t-break-words {
-  overflow-wrap: break-word;
-}
-
 .t-break-all {
   word-break: break-all;
 }
@@ -828,25 +684,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 0.25rem;
 }
 
-.t-border-0 {
-  border-width: 0px;
-}
-
 .t-border-2 {
   border-width: 2px;
 }
 
-.t-border-t {
-  border-top-width: 1px;
-}
-
 .t-border-solid {
   border-style: solid;
-}
-
-.t-border-\[color\:\#989898\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(152 152 152 / var(--tw-border-opacity));
 }
 
 .t-border-white {
@@ -863,11 +706,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: #00000000;
 }
 
-.t-bg-red-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
-}
-
 .t-object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -877,12 +715,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 0.75rem;
 }
 
-.t-p-2 {
-  padding: 0.5rem;
-}
-
 .t-p-1 {
   padding: 0.25rem;
+}
+
+.t-p-2 {
+  padding: 0.5rem;
 }
 
 .t-py-\[20px\] {
@@ -899,20 +737,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 56px;
 }
 
-.t-pl-5 {
-  padding-left: 1.25rem;
-}
-
 .t-text-center {
   text-align: center;
 }
 
 .t-text-\[20px\] {
   font-size: 20px;
-}
-
-.t-text-\[1\.2rem\] {
-  font-size: 1.2rem;
 }
 
 .t-text-xs {
@@ -933,34 +763,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-.t-text-\[\#ff0000\] {
+.t-text-red-400 {
   --tw-text-opacity: 1;
-  color: rgb(255 0 0 / var(--tw-text-opacity));
-}
-
-.t-text-gray-400 {
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-
-.t-text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.t-text-blue-300 {
-  --tw-text-opacity: 1;
-  color: rgb(147 197 253 / var(--tw-text-opacity));
-}
-
-.t-text-blue-400 {
-  --tw-text-opacity: 1;
-  color: rgb(96 165 250 / var(--tw-text-opacity));
-}
-
-.t-text-blue-500 {
-  --tw-text-opacity: 1;
-  color: rgb(59 130 246 / var(--tw-text-opacity));
+  color: rgb(248 113 113 / var(--tw-text-opacity));
 }
 
 .t-text-gray-500 {
@@ -968,14 +773,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
-.t-text-gray-100 {
+.t-text-gray-400 {
   --tw-text-opacity: 1;
-  color: rgb(243 244 246 / var(--tw-text-opacity));
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
-.t-text-gray-200 {
+.t-text-blue-400 {
   --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity));
+  color: rgb(96 165 250 / var(--tw-text-opacity));
+}
+
+.t-text-\[\#ff0000\] {
+  --tw-text-opacity: 1;
+  color: rgb(255 0 0 / var(--tw-text-opacity));
+}
+
+.t-text-blue-500 {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
 .t-text-gray-300 {
@@ -983,19 +798,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
-.t-text-yellow-300 {
+.t-text-white {
   --tw-text-opacity: 1;
-  color: rgb(253 224 71 / var(--tw-text-opacity));
-}
-
-.t-text-yellow-500 {
-  --tw-text-opacity: 1;
-  color: rgb(234 179 8 / var(--tw-text-opacity));
-}
-
-.t-text-red-400 {
-  --tw-text-opacity: 1;
-  color: rgb(248 113 113 / var(--tw-text-opacity));
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .t-line-through {
@@ -1062,10 +867,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-column: span 2 / span 2;
   }
 
-  .sm\:t-block {
-    display: block;
-  }
-
   .sm\:t-inline {
     display: inline;
   }
@@ -1086,70 +887,18 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 10rem;
   }
 
-  .sm\:t-w-\[80px\] {
-    width: 80px;
+  .sm\:t-grid-cols-\[minmax\(171px\2c _auto\)_1fr\] {
+    grid-template-columns: minmax(171px, auto) 1fr;
   }
 
   .sm\:t-grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .sm\:t-grid-cols-\[minmax\(171px\2c _auto\)_1fr\] {
-    grid-template-columns: minmax(171px, auto) 1fr;
-  }
 }
 
 @media (min-width: 768px) {
-  .md\:t-col-span-1 {
-    grid-column: span 1 / span 1;
-  }
-
   .md\:t-grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .md\:t-grid-cols-\[185px_1fr_auto\] {
-    grid-template-columns: 185px 1fr auto;
-  }
-
-  .md\:t-grid-cols-\[auto_auto\] {
-    grid-template-columns: auto auto;
-  }
-
-  .md\:t-grid-cols-\[minmax\(185px\2c 1fr\)_auto\] {
-    grid-template-columns: minmax(185px,1fr) auto;
-  }
-
-  .md\:t-grid-cols-\[minmax\(185px\2c _1fr\)_auto\] {
-    grid-template-columns: minmax(185px, 1fr) auto;
-  }
-
-  .md\:t-grid-cols-\[minmax\(185px\2c _auto\)_auto\] {
-    grid-template-columns: minmax(185px, auto) auto;
-  }
-
-  .md\:t-grid-cols-\[minmax\(185px\2c _auto\)_1fr\] {
-    grid-template-columns: minmax(185px, auto) 1fr;
-  }
-
-  .md\:t-grid-cols-\[minmax\(175px\2c _auto\)_1fr\] {
-    grid-template-columns: minmax(175px, auto) 1fr;
-  }
-
-  .md\:t-grid-cols-\[minmax\(173px\2c _auto\)_1fr\] {
-    grid-template-columns: minmax(173px, auto) 1fr;
-  }
-
-  .md\:t-grid-cols-\[minmax\(172px\2c _auto\)_1fr\] {
-    grid-template-columns: minmax(172px, auto) 1fr;
-  }
-
-  .md\:t-grid-cols-\[minmax\(171px\2c _auto\)_1fr\] {
-    grid-template-columns: minmax(171px, auto) 1fr;
-  }
-
-  .md\:t-grid-cols-\[171px_1fr_auto\] {
-    grid-template-columns: 171px 1fr auto;
   }
 }
 
@@ -1167,6 +916,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-column: span 1 / span 1;
   }
 
+  .lg\:t-grid-cols-\[171px_1fr_auto\] {
+    grid-template-columns: 171px 1fr auto;
+  }
+
   .lg\:t-grid-cols-\[3fr_4fr\] {
     grid-template-columns: 3fr 4fr;
   }
@@ -1177,18 +930,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:t-grid-cols-\[1fr_1fr\] {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .lg\:t-grid-cols-\[185px_4fr_auto\] {
-    grid-template-columns: 185px 4fr auto;
-  }
-
-  .lg\:t-grid-cols-\[185px_1fr_auto\] {
-    grid-template-columns: 185px 1fr auto;
-  }
-
-  .lg\:t-grid-cols-\[171px_1fr_auto\] {
-    grid-template-columns: 171px 1fr auto;
   }
 
   @media (min-width: 640px) {
