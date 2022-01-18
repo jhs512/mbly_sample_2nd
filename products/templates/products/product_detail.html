@@ -137,7 +137,7 @@
                                 </button>
                             </form>
                             {% else %}
-                            <a href="{% url 'accounts:login' %}?next={{request.get_full_path}}" class="t-text-gray-300"
+                            <a href="{% url 'accounts:login' %}?next={{request.get_full_path}}" class="t-text-gray-300 hover:t-text-gray-300"
                                title="로그인 후 이용해주세요.">
                                 <i class="fas fa-cart-plus"></i>
                             </a>

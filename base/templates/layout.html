@@ -28,7 +28,7 @@
 {% if messages %}
 {% for message in messages %}
 <div class="alert alert-{{ message.tags }} t-my-[0px]">
-    {{ message }}
+    {{ message|safe }}
 </div>
 {% endfor %}
 {% endif %}

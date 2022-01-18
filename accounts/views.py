@@ -93,8 +93,10 @@ def find_username(request: HttpRequest):
 def kakao_login(request: HttpRequest):
     REST_API_KEY = os.environ.get("KAKAO_APP__REST_API_KEY")
     REDIRECT_URI = os.environ.get("KAKAO_APP__LOGIN__REDIRECT_URI")
+
+    next = request.GET.get('next', '')
     return redirect(
-        f"https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code"
+        f"https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code&state={next}"
     )
 
 
@@ -131,6 +133,8 @@ def kakao_login_callback(request):
 
     User.login_with_kakao(request, id, nickname, thumbnail_image_url)
 
-    messages.success(request, "카카오톡 계정으로 로그인되었습니다")
+    messages.success(request, f"{nickname}님 환영합니다. 카카오톡 계정으로 로그인되었습니다")
 
-    return redirect("main")
+    next = request.GET.get('state', '')
+
+    return redirect("main" if not next else next)

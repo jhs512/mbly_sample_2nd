@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import QuerySet
 from django.http import HttpRequest
 # Create your views here.
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404, resolve_url
 from django.views.decorators.http import require_POST, require_GET
 
 from cart.forms import ProductCartAddForm
@@ -29,7 +29,9 @@ def add(request: HttpRequest):
             cart_item.user = request.user
             cart_item.save()
 
-        messages.success(request, "장바구니에 추가되었습니다.")
+        name = f'{product_real.product.display_name}/{product_real.option_1_display_name}/{product_real.option_2_display_name}'
+
+        messages.success(request, f"장바구니에 상품({name})이 {form.cleaned_data['quantity']}개 추가되었습니다. <a href='{resolve_url('cart:list')}'>장바구니로 이동</a>")
         return redirect('products:detail', product_real.product.id)
 
     messages.error(request, form['quantity'].errors, 'danger')

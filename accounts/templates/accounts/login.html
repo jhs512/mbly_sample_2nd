@@ -16,10 +16,11 @@
             </form>
             <hr>
             <div class="t-py-2">
-                <a class="t-text-black t-bg-[#ffe812] t-no-underline t-p-3 t-rounded hover:t-text-black hover:t-underline" href="{% url 'accounts:kakao_signin' %}">
-                <i class="fas fa-comment"></i>
-                카카오 로그인
-            </a>
+                <a class="t-text-black t-bg-[#ffe812] t-no-underline t-p-3 t-rounded hover:t-text-black hover:t-underline"
+                   href="{% url 'accounts:kakao_signin' %}?next={{request.GET.next}}">
+                    <i class="fas fa-comment"></i>
+                    카카오 로그인
+                </a>
             </div>
         </div>
     </div>
