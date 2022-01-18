@@ -65,6 +65,7 @@ def join(request: HttpRequest):
     })
 
 
+@logout_required
 def find_username(request: HttpRequest):
     if request.method == 'POST':
         form = FindUsernameForm(request.POST)
@@ -88,6 +89,7 @@ def find_username(request: HttpRequest):
     })
 
 
+@logout_required
 def kakao_login(request: HttpRequest):
     REST_API_KEY = os.environ.get("KAKAO_APP__REST_API_KEY")
     REDIRECT_URI = os.environ.get("KAKAO_APP__LOGIN__REDIRECT_URI")
@@ -96,6 +98,7 @@ def kakao_login(request: HttpRequest):
     )
 
 
+@logout_required
 def kakao_login_callback(request):
     code = request.GET.get("code")
 

@@ -22,3 +22,9 @@ html > body :is(h1, h2, h3, h4, h5, h6) {
     margin:0;
     font-size:1rem;
 }
+
+.one-text-button-form, .one-text-button-form > * {
+    display:inline;
+    margin:0;
+    padding:0;
+}

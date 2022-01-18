@@ -44,13 +44,19 @@
                     <li class="list-group-item">
                         <span class="t-w-16 t-inline-block">좋아요</span>
                         {% if user_picked %}
-                        <a href="{% url 'products:unpick' product.id %}" class="t-text-[#ff0000]">
-                            <i class="fas fa-heart"></i>
-                        </a>
+                        <form method="post" class="one-text-button-form" action="{% url 'products:unpick' product.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="t-text-[#ff0000]">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </form>
                         {% else %}
-                        <a href="{% url 'products:pick' product.id %}" class="t-text-[#ff0000]">
-                            <i class="far fa-heart"></i>
-                        </a>
+                        <form method="post" class="one-text-button-form" action="{% url 'products:pick' product.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="t-text-[#ff0000]">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </form>
                         {% endif %}
                     </li>
                 </ul>
@@ -164,6 +170,8 @@
                     $(window).on('load', function() {
                         $(window).scrollTop($lastForm.offset().top - $(window).height() + $lastForm.height() + 50);
                     });
+
+
                 </script>
                 {% endif %}
 
@@ -197,12 +205,14 @@
                         {% if question.user == request.user %}
                         &nbsp;
                         <div class="t-flex t-flex-shrink-0 t-flex-col t-items-start t-gap-2">
-                            <a href="{% url 'products:question_delete' product.id question.id %}"
-                               class="btn btn-sm btn-danger"
-                               onclick="if ( confirm('정말 삭제하시겠습니까?') == false ) return false;">
-                                <i class="far fa-trash-alt"></i>
-                                <span class="t-hidden sm:t-inline">삭제</span>
-                            </a>
+                            <form method="post" action="{% url 'products:question_delete' product.id question.id %}">
+                                {% csrf_token %}
+                                <button class="btn btn-sm btn-danger"
+                                        onclick="if ( confirm('정말 삭제하시겠습니까?') == false ) return false;">
+                                    <i class="far fa-trash-alt"></i>
+                                    <span class="t-hidden sm:t-inline">삭제</span>
+                                </button>
+                            </form>
                             {% endif %}
                             <a href="{% url 'products:question_modify' product.id question.id %}"
                                class="btn btn-sm btn-secondary">
@@ -249,6 +259,8 @@
                     $(window).on('load', function() {
                         $(window).scrollTop($lastForm.offset().top - $(window).height() + $lastForm.height() + 50);
                     });
+
+
 
 
 

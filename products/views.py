@@ -8,6 +8,8 @@ from django.http import HttpRequest
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
+from django.views.decorators.http import require_GET, require_POST
+
 from accounts.models import User
 from cart.forms import ProductCartAddForm
 from products.models import Product, ProductCategoryItem
@@ -16,6 +18,7 @@ from qna.models import Question
 
 
 # 상품 리스트
+@require_GET
 def product_list(request: HttpRequest):
     # 카테고리 정보
     product_cate_items = ProductCategoryItem.objects.all()
@@ -87,6 +90,7 @@ def _get_product_detail_context(request: HttpRequest, product_id):
 
 
 # 상품 상세
+@require_GET
 def product_detail(request: HttpRequest, product_id):
     context = _get_product_detail_context(request, product_id)
 
@@ -95,6 +99,7 @@ def product_detail(request: HttpRequest, product_id):
 
 # 질문 생성화면, 질문생성 처리
 @login_required
+@require_POST
 def question_create(request: HttpRequest, product_id):
     context = _get_product_detail_context(request, product_id)
     product: Product = context['product']
@@ -116,6 +121,7 @@ def question_create(request: HttpRequest, product_id):
 
 # 질문 삭제
 @login_required
+@require_POST
 def question_delete(request: HttpRequest, product_id, question_id):
     question = get_object_or_404(Question, id=question_id)
 
@@ -131,6 +137,7 @@ def question_delete(request: HttpRequest, product_id, question_id):
 
 # 질문 수정
 @login_required
+@require_POST
 def question_modify(request: HttpRequest, product_id, question_id):
     context = _get_product_detail_context(request, product_id)
     question = get_object_or_404(Question, id=question_id)
@@ -155,6 +162,7 @@ def question_modify(request: HttpRequest, product_id, question_id):
 
 
 @login_required
+@require_POST
 def product_pick(request: HttpRequest, product_id):
     request.user.picked_products.add(product_id)
     messages.success(request, f"{product_id}번 상품에 좋아요.")
@@ -162,6 +170,7 @@ def product_pick(request: HttpRequest, product_id):
 
 
 @login_required
+@require_POST
 def product_unpick(request: HttpRequest, product_id):
     request.user.picked_products.remove(product_id)
     messages.success(request, f"{product_id}번 상품에 좋아요 취소.")
