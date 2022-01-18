@@ -127,9 +127,21 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="#" class="t-no-underline">
+                            {% if user.is_authenticated %}
+                            <form method="post" action="{% url 'cart:add' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_real" value="{{product_real.id}}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="t-text-blue-500">
+                                    <i class="fas fa-cart-plus"></i>
+                                </button>
+                            </form>
+                            {% else %}
+                            <a href="{% url 'accounts:login' %}?next={{request.get_full_path}}" class="t-text-gray-300"
+                               title="로그인 후 이용해주세요.">
                                 <i class="fas fa-cart-plus"></i>
                             </a>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
@@ -171,6 +183,10 @@
                     $(window).on('load', function() {
                         $(window).scrollTop($lastForm.offset().top - $(window).height() + $lastForm.height() + 50);
                     });
+
+
+
+
 
 
 
@@ -262,6 +278,10 @@
                     $(window).on('load', function() {
                         $(window).scrollTop($lastForm.offset().top - $(window).height() + $lastForm.height() + 50);
                     });
+
+
+
+
 
 
                 </script>
