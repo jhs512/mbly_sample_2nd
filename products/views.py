@@ -137,7 +137,6 @@ def question_delete(request: HttpRequest, product_id, question_id):
 
 # 질문 수정
 @login_required
-@require_POST
 def question_modify(request: HttpRequest, product_id, question_id):
     context = _get_product_detail_context(request, product_id)
     question = get_object_or_404(Question, id=question_id)

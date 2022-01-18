@@ -44,7 +44,8 @@
                     <li class="list-group-item">
                         <span class="t-w-16 t-inline-block">좋아요</span>
                         {% if user_picked %}
-                        <form method="post" class="one-text-button-form" action="{% url 'products:unpick' product.id %}">
+                        <form method="post" class="one-text-button-form"
+                              action="{% url 'products:unpick' product.id %}">
                             {% csrf_token %}
                             <button type="submit" class="t-text-[#ff0000]">
                                 <i class="fas fa-heart"></i>
@@ -172,6 +173,7 @@
                     });
 
 
+
                 </script>
                 {% endif %}
 
@@ -197,10 +199,10 @@
                         <span class="badge bg-secondary">{{question.reg_date|date:"y-m-d h:i"}}</span>
                     </div>
                     <div class="t-flex mt-2">
-                        <span>
+                        <div class="t-break-all">
                             <img src="{{ question.user.profile_img_url }}"
-                                 class="t-rounded t-w-[40px] t-mr-[10px] t-float-left"> {{question.body}}
-                        </span>
+                                 class="t-rounded t-w-[40px] t-mr-[10px] t-float-left"> {{question.body|linebreaksbr}}
+                        </div>
                         <div class="t-flex-grow"></div>
                         {% if question.user == request.user %}
                         &nbsp;
@@ -213,13 +215,14 @@
                                     <span class="t-hidden sm:t-inline">삭제</span>
                                 </button>
                             </form>
-                            {% endif %}
+
                             <a href="{% url 'products:question_modify' product.id question.id %}"
                                class="btn btn-sm btn-secondary">
                                 <i class="fas fa-edit"></i>
                                 <span class="t-hidden sm:t-inline">수정</span>
                             </a>
                         </div>
+                        {% endif %}
                     </div>
                 </li>
                 {% endfor %}
@@ -261,14 +264,6 @@
                     });
 
 
-
-
-
-
-
-
-
-
                 </script>
             </div>
         </div>
@@ -289,18 +284,21 @@
                     <span class="badge bg-secondary">{{question.reg_date|date:"y-m-d h:i"}}</span>
                 </div>
                 <div class="t-flex mt-2">
-                    <span>
+                    <span class="t-break-all">
                         <img src="{{ question.user.profile_img_url }}"
-                             class="t-rounded t-w-[40px] t-mr-[10px] t-float-left"> {{question.body}}
+                             class="t-rounded t-w-[40px] t-mr-[10px] t-float-left"> {{question.body|linebreaksbr}}
                     </span>
                     <div class="t-flex-grow"></div>
                     &nbsp;
                     <div class="t-flex t-flex-shrink-0 t-flex-col t-items-start t-gap-2">
-                        <a href="{% url 'products:question_modify' product.id question.id %}"
-                           class="btn btn-sm btn-secondary">
-                            <i class="fas fa-edit"></i>
-                            <span class="t-hidden sm:t-inline">수정</span>
-                        </a>
+                        <form method="post" action="{% url 'products:question_delete' product.id question.id %}">
+                            {% csrf_token %}
+                            <button class="btn btn-sm btn-danger"
+                                    onclick="if ( confirm('정말 삭제하시겠습니까?') == false ) return false;">
+                                <i class="far fa-trash-alt"></i>
+                                <span class="t-hidden sm:t-inline">삭제</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
 
