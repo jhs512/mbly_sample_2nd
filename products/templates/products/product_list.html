@@ -31,6 +31,7 @@
 
 
 
+
             </script>
         </div>
 
@@ -71,10 +72,10 @@
                    href="{% url 'products:detail' product.id %}">
                     {{product.display_name}}
                 </a>
-                <a class="t-text-center t-mt-2 t-no-underline t-text-gray-400 group-hover:t-text-blue-500"
+                <a class="t-text-center t-mt-2 t-no-underline group-hover:t-text-blue-500"
                    href="{% url 'products:detail' product.id %}">
-                    <i class="fas fa-won-sign"></i>
-                    <span>{{ product.sale_price|intcomma }}</span>
+                    <span>{{ product.sale_price|intcomma }}원</span>
+                    <span class="t-line-through t-text-gray-400">{{ product.price|intcomma }}원</span>
                 </a>
                 <a class="t-text-center t-mt-2 t-no-underline t-text-gray-400 group-hover:t-text-blue-500"
                    href="{% url 'products:detail' product.id %}">

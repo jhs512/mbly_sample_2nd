@@ -18,31 +18,32 @@
                                                     src="{{product.thumb_img_url}}" alt=""></a>
                     </li>
                     <li class="list-group-item">
-                        <span class="t-w-16 t-inline-block">번호</span>
+                        <span class="t-w-16 t-inline-block common-label">번호</span>
                         <span class="badge bg-primary">{{product.id}}</span>
                     </li>
                     <li class="list-group-item">
-                        <span class="t-w-16 t-inline-block">마켓</span>
+                        <span class="t-w-16 t-inline-block common-label">마켓</span>
                         <span class="badge bg-primary">{{product.market.name}}</span>
                     </li>
                     <li class="list-group-item">
-                        <span class="t-w-16 t-inline-block">카테고리</span>
+                        <span class="t-w-16 t-inline-block common-label">카테고리</span>
                         <span class="badge bg-dark">{{product.cate_item.name}}</span>
                     </li>
                     <li class="list-group-item">
-                        <span class="t-w-16 t-inline-block">상품명</span>
-                        <span class="t-font-bold">{{product.display_name}}</span>
+                        <span class="t-w-16 t-inline-block common-label">상품명</span>
+                        <span>{{product.display_name}}</span>
                     </li>
                     <li class="list-group-item">
-                        <span class="t-w-16 t-inline-block">가격</span>
-                        <span class="t-font-bold">{{product.sale_price|intcomma}}</span>원
+                        <span class="t-w-16 t-inline-block common-label">가격</span>
+                        <span>{{product.sale_price|intcomma}}원</span>
+                        <span class="t-text-gray-400 t-line-through">{{product.price|intcomma}}원</span>
                     </li>
                     <li class="list-group-item">
-                        <span class="t-w-16 t-inline-block">색상</span>
+                        <span class="t-w-16 t-inline-block common-label">색상</span>
                         {{product.colors|safe}}
                     </li>
                     <li class="list-group-item">
-                        <span class="t-w-16 t-inline-block">좋아요</span>
+                        <span class="t-w-16 t-inline-block common-label">좋아요</span>
                         {% if user_picked %}
                         <form method="post" class="one-text-button-form"
                               action="{% url 'products:unpick' product.id %}">

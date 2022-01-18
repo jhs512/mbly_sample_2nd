@@ -31,7 +31,8 @@ def add(request: HttpRequest):
 
         name = f'{product_real.product.display_name}/{product_real.option_1_display_name}/{product_real.option_2_display_name}'
 
-        messages.success(request, f"장바구니에 상품({name})이 {form.cleaned_data['quantity']}개 추가되었습니다. <a href='{resolve_url('cart:list')}'>장바구니로 이동</a>")
+        messages.success(request,
+                         f"장바구니에 상품({name})이 {form.cleaned_data['quantity']}개 추가되었습니다. <a href='{resolve_url('cart:list')}'>장바구니로 이동</a>")
         return redirect('products:detail', product_real.product.id)
 
     messages.error(request, form['quantity'].errors, 'danger')
@@ -41,7 +42,10 @@ def add(request: HttpRequest):
 @login_required
 @require_GET
 def list(request: HttpRequest):
-    cart_items = CartItem.objects.filter(user=request.user)
+    cart_items = CartItem \
+        .objects \
+        .select_related('product_real', 'product_real__product', 'product_real__product__market', 'product_real__product__cate_item') \
+        .filter(user=request.user)
 
     return render(request, "cart/list.html", {
         "cart_items": cart_items
