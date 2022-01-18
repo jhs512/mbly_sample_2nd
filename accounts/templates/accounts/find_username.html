@@ -11,7 +11,12 @@
                 {% csrf_token %}
                 {% bootstrap_form form %}
                 {% bootstrap_button button_type="submit" content="<i class='fas fa-users'></i> 아이디찾기" %}
-                {% bootstrap_button button_type="reset" content="취소" button_class="btn-outline-primary" %}
+
+                {% url 'main' as main_url %}
+                {% bootstrap_button button_type="link" href=main_url content="취소" button_class="btn-outline-primary" %}
+
+                {% url 'accounts:login' as accounts_login_url %}
+                {% bootstrap_button button_type="link" href=accounts_login_url content="로그인" button_class="btn-outline-primary" %}
             </form>
         </div>
     </div>

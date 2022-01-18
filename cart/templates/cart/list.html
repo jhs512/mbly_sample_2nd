@@ -66,6 +66,7 @@
             <span>장바구니</span>
         </h1>
 
+        {% if cart_items %}
         <hr>
 
         <div class="t-mt-[10px]">
@@ -75,6 +76,7 @@
                 전체선택
             </label>
         </div>
+        {% endif %}
 
         <hr>
 
@@ -161,10 +163,11 @@
         {% else %}
         <div class="t-text-center t-text-gray-400">
             <i class="far fa-sad-tear"></i>
-            상품이 없습니다. 장바구니에 삼풍을 담아주세요.
+            상품이 없습니다.<br>장바구니에 상품을 담아주세요.
         </div>
         {% endif %}
 
+        {% if cart_items %}
         <hr>
 
         <div>
@@ -175,6 +178,7 @@
             {% csrf_token %}
             <input type="hidden" name="ids" value="">
         </form>
+        {% endif %}
     </div>
 </section>
 
