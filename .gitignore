@@ -277,4 +277,3 @@ fabric.properties
 
 .idea
 node_modules
-base/static/tailwind.output.css
