@@ -48,16 +48,30 @@
     }
 
 
+
+
 </script>
 
 <section class="section-cart-item-list">
     <div class="container">
-        <h1 class="t-text-[1.2rem] t-font-bold">장바구니</h1>
+        <h1 class="t-font-bold">
+            <i class="fas fa-shopping-cart"></i>
+
+            <span>장바구니</span>
+        </h1>
+
+        <hr>
 
         <div class="t-mt-[10px]">
-            <input type="checkbox" class="cart-items__checkbox-all" onchange="CartItems__allCheckBoxCheckChanged(this)">
+            <label>
+                <input type="checkbox" class="cart-items__checkbox-all" onchange="CartItems__allCheckBoxCheckChanged(this)">
+                전체선택
+            </label>
         </div>
 
+        <hr>
+
+        {% if cart_items %}
         <ul>
             {% for cart_item in cart_items %}
             <li class="t-border-[color:#989898] t-border-0 t-border-t t-border-solid t-py-[20px]">
@@ -115,6 +129,14 @@
             </li>
             {% endfor %}
         </ul>
+        {% else %}
+        <div class="t-text-center t-text-gray-400">
+            <i class="far fa-sad-tear"></i>
+            상품이 없습니다. 장바구니에 삼풍을 담아주세요.
+        </div>
+        {% endif %}
+
+        <hr>
 
         <div>
             <button type="button" class="btn btn-danger btn-sm" onclick="CartItems__deleteChecked();">선택삭제</button>
