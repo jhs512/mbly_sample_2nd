@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 
 from products.models import Product
@@ -6,8 +5,9 @@ from qna.models import Question
 
 
 def gen_master(apps, schema_editor):
-    if not settings.DEBUG:
-        return
+    # 운영서버에서 테스트를 위해 임시로 허용
+    # if not settings.DEBUG:
+    #     return
 
     product = Product.objects.get(id=1)
     product_content_type = ContentType.objects.get_for_model(product)

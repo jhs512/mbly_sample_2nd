@@ -1,5 +1,3 @@
-from django.conf import settings
-
 from products.models import ProductCategoryItem, Product, ProductReal
 
 
@@ -37,8 +35,9 @@ def gen_product(market_id: int, name: str, display_name: str, price: int, opt_1_
 
 
 def gen_master(apps, schema_editor):
-    if not settings.DEBUG:
-        return
+    # 운영서버에서 테스트를 위해 임시로 허용
+    # if not settings.DEBUG:
+    #     return
 
     gen_master_product_category()
 
