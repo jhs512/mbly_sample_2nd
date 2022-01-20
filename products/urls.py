@@ -12,4 +12,5 @@ urlpatterns = [
     path('<int:product_id>/question/modify/<int:question_id>', views.question_modify, name='question_modify'),
     path('<int:product_id>/pick/', views.product_pick, name='pick'),
     path('<int:product_id>/picked/', views.product_unpick, name='unpick'),
+    path('api/products', views.ProductListView.as_view(), name='api_list'),
 ]

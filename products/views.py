@@ -6,13 +6,14 @@ from django.core.paginator import Paginator
 from django.db.models import Prefetch
 from django.http import HttpRequest
 from django.shortcuts import render, get_object_or_404, redirect
-
 # Create your views here.
 from django.views.decorators.http import require_GET, require_POST
+from rest_framework.generics import ListAPIView
 
 from accounts.models import User
 from cart.forms import ProductCartAddForm
 from products.models import Product, ProductCategoryItem
+from products.serializers import ProductSerializer
 from qna.forms import QuestionForm
 from qna.models import Question
 
@@ -174,3 +175,8 @@ def product_unpick(request: HttpRequest, product_id):
     request.user.picked_products.remove(product_id)
     messages.success(request, f"{product_id}번 상품에 좋아요 취소.")
     return redirect("products:detail", product_id=product_id)
+
+
+class ProductListView(ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
