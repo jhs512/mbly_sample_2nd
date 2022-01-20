@@ -7,3 +7,4 @@ django-dotenv
 django_bootstrap5
 lazy-string
 requests
+djangorestframework

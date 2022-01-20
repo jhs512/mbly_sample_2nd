@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # 서드파티
     'django_bootstrap5',
     'django_pydenticon',
+    "rest_framework",
     # 로컬
     'accounts.apps.AccountsConfig',
     'markets.apps.MarketsConfig',
